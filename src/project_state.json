@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Building a single-page capability test app called 'Caffeine Capability Test' that demonstrates real platform features using Motoko backend for global state, cross-device sync, leaderboard, file uploads, and Internet Identity authentication. The app includes 11 feature test cards, each showing honest PASS/LOCAL-ONLY/NOT SUPPORTED status badges.",
+  "architectural_notes": [
+    "Use Motoko backend canister for global state (counter, leaderboard, file storage)",
+    "Implement Internet Identity for real decentralized authentication",
+    "Use localStorage for local-only features (todo list)",
+    "Dark UI with separate cards for each capability test",
+    "Each card displays status badge: PASS / LOCAL-ONLY / NOT SUPPORTED",
+    "Real-time features (WebSockets) not supported - demonstrate limitation honestly",
+    "mailto: link for email (to brianvbn@gmail.com) - explain direct sending limitation",
+    "Query parameter unlocks hidden section when ?code=237 is present",
+    "Global file upload allows all authenticated users to view uploaded images",
+    "Version display (v1.0) with editable changelog section"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-dark-themed-single-page-app-layout-with-a-grid-of-11-feature-test-cards-each-displaying-a-status-badge-pass-local-only-not-supported-and-clear-explanations-for-any-limitations",
+      "title": "Create a dark-themed single-page app layout with a grid of 11 feature test cards, each displaying a status badge (PASS / LOCAL-ONLY / NOT SUPPORTED) and clear explanations for any limitations",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-local-persistence-test-card-with-a-todo-input-field-save-to-localstorage-persist-after-browser-refresh-and-include-a-clear-storage-button",
+      "title": "Implement Local Persistence Test card with a todo input field, save to localStorage, persist after browser refresh, and include a clear storage button",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-cross-device-sync-test-card-with-an-increment-button-that-calls-the-motoko-backend-to-update-a-global-counter-visible-to-all-users-across-all-devices",
+      "title": "Implement Cross-Device Sync Test card with an Increment button that calls the Motoko backend to update a global counter visible to all users across all devices",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-leaderboard-test-card-with-a-form-to-submit-name-and-score-display-the-global-leaderboard-from-the-motoko-backend-sorted-by-score-and-refresh-the-list-after-each-submission",
+      "title": "Implement Leaderboard Test card with a form to submit name and score, display the global leaderboard from the Motoko backend sorted by score, and refresh the list after each submission",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-external-api-fetch-test-card-that-fetches-data-from-a-public-rest-api-e-g-jsonplaceholder-or-similar-and-displays-the-json-result-with-error-handling-for-blocked-requests",
+      "title": "Implement External API Fetch Test card that fetches data from a public REST API (e.g., JSONPlaceholder or similar) and displays the JSON result, with error handling for blocked requests",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-api-route-backend-test-card-that-calls-the-motoko-backend-test-method-and-displays-the-json-response-with-explanation-that-motoko-canisters-provide-backend-functionality-instead-of-traditional-rest-routes",
+      "title": "Implement API Route/Backend Test card that calls the Motoko backend test method and displays the JSON response, with explanation that Motoko canisters provide backend functionality instead of traditional REST routes",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-email-capability-test-card-with-a-form-name-and-message-fields-generate-a-mailto-link-pre-populated-with-to-brianvbn-gmail-com-subject-caffeine-test-submission-name-and-body-including-name-message-timestamp-and-random-session-id-display-the-generated-link-and-include-a-send-via-email-client-button-with-explanation-that-direct-email-requires-external-services",
+      "title": "Implement Email Capability Test card with a form (name and message fields), generate a mailto link pre-populated with To: brianvbn@gmail.com, Subject: 'Caffeine Test Submission - [Name]', and Body including name, message, timestamp, and random session ID, display the generated link, and include a 'Send via Email Client' button with explanation that direct email requires external services",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-internet-identity-authentication-with-login-logout-functionality-protect-specific-feature-cards-requiring-authentication-and-display-the-authenticated-user-s-principal-id",
+      "title": "Integrate Internet Identity authentication with login/logout functionality, protect specific feature cards requiring authentication, and display the authenticated user's principal ID",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-file-upload-test-card-with-image-upload-input-preview-uploaded-image-locally-call-motoko-backend-to-persist-the-image-globally-and-display-all-globally-uploaded-images-from-all-users-in-a-gallery-view",
+      "title": "Implement File Upload Test card with image upload input, preview uploaded image locally, call Motoko backend to persist the image globally, and display all globally uploaded images from all users in a gallery view",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-real-time-test-card-that-explains-websockets-and-socket-io-are-not-supported-on-the-internet-computer-platform-display-not-supported-status-badge-and-clarify-that-polling-or-query-based-updates-are-alternative-patterns",
+      "title": "Implement Real-Time Test card that explains WebSockets and Socket.io are not supported on the Internet Computer platform, display NOT SUPPORTED status badge, and clarify that polling or query-based updates are alternative patterns",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-version-deploy-test-card-displaying-app-version-number-v1-0-include-an-editable-changelog-textarea-that-persists-locally-and-show-the-current-deployment-environment-information",
+      "title": "Implement Version/Deploy Test card displaying app version number 'v1.0', include an editable changelog textarea that persists locally, and show the current deployment environment information",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-url-state-query-parameter-test-card-that-reads-query-parameters-from-the-browser-url-specifically-checking-for-code-237-unlocks-a-hidden-section-when-the-correct-value-is-detected-displays-all-detected-query-parameters-on-screen-and-explains-that-url-state-works-reliably-in-react",
+      "title": "Implement URL State/Query Parameter Test card that reads query parameters from the browser URL (specifically checking for ?code=237), unlocks a hidden section when the correct value is detected, displays all detected query parameters on screen, and explains that URL state works reliably in React",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-creative-visual-theme-with-distinct-colors-avoiding-blue-and-purple-typography-and-layout-style-that-creates-a-cohesive-modern-dark-ui-experience-across-all-feature-cards",
+      "title": "Apply a creative visual theme with distinct colors (avoiding blue and purple), typography, and layout style that creates a cohesive, modern dark UI experience across all feature cards",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Local Persistence Test - localStorage todo list with clear button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Cross-Device Sync Test - Global counter using Motoko backend",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Leaderboard Test - Global leaderboard with Motoko backend persistence",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "External API Fetch Test - Fetch and display data from public API",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "API Route/Backend Test - Test Motoko canister method endpoints",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Email Capability Test - Generate mailto link with pre-populated fields to brianvbn@gmail.com",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Auth/Protected Route Test - Real Internet Identity authentication",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "File Upload Test - Global image upload with Motoko backend persistence",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Real-Time Test - Demonstrate real-time limitations (NOT SUPPORTED)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Version/Deploy Test - Display version number and editable changelog",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "URL State/Query Parameter Test - Read query params and unlock hidden section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Create Motoko backend method to store and retrieve a global counter value that persists across all users and devices",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Create Motoko backend methods to add leaderboard entries (name and score) and retrieve all entries sorted by score in descending order, with global persistence across all users",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Create Motoko backend method that returns a test JSON response to demonstrate backend API endpoint functionality",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Create Motoko backend methods to upload image files as byte arrays with metadata (filename, content type, uploader principal), store them globally, and retrieve all uploaded images with their data",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Caffeine Capability Test",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,291 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Caffeine Capability Test App - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create dark-themed single-page app layout with 11 feature test cards displaying status badges and limitation explanations",
+      "acceptanceCriteria": [
+        "Dark color scheme applied consistently across the app",
+        "All 11 feature cards are visible in a responsive grid layout",
+        "Each card displays a colored status badge",
+        "Limitation explanations are clearly visible where applicable"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the existing App component with a single-page layout that displays 11 feature test cards in a responsive grid. Remove routing logic and create a simple container that renders all test cards in one view."
+        },
+        {
+          "path": "frontend/src/components/FeatureCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable FeatureCard component that accepts title, status badge (PASS / LOCAL-ONLY / NOT SUPPORTED), explanation text, and children content. Apply consistent dark theme styling with colored status badges (green for PASS, yellow for LOCAL-ONLY, red for NOT SUPPORTED)."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define dark theme CSS variables and base styles for the entire app. Set dark background, light text colors, and ensure consistent spacing and typography throughout the application."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Local Persistence Test card with todo input, localStorage persistence, and clear storage functionality",
+      "acceptanceCriteria": [
+        "Todo input field accepts and stores text in localStorage",
+        "Stored todos persist after page refresh",
+        "Clear button removes all todos from localStorage",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LocalPersistenceTest.tsx",
+          "operation": "create",
+          "description": "Create a component with a todo input field that saves entries to localStorage under a specific key. Load todos on mount from localStorage. Implement a clear button that removes the localStorage key. Display the list of saved todos. Use PASS status badge."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement Cross-Device Sync Test card with Increment button calling Motoko backend to update global counter",
+      "acceptanceCriteria": [
+        "Button calls backend increment method",
+        "Counter value updates in real-time after increment",
+        "Multiple users see the same counter value",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CrossDeviceSyncTest.tsx",
+          "operation": "create",
+          "description": "Create a component that displays the global counter value fetched from the backend getCounter method. Implement an Increment button that calls incrementAndGetCounter and updates the displayed value. Use React Query for data fetching and cache invalidation. Display PASS status badge."
+        },
+        {
+          "path": "frontend/src/hooks/useCounter.ts",
+          "operation": "create",
+          "description": "Create custom hooks useGetCounter and useIncrementCounter using React Query and the backend actor methods getCounter and incrementAndGetCounter. Handle loading states and errors appropriately."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement Leaderboard Test card with form to submit name/score and display global leaderboard from backend",
+      "acceptanceCriteria": [
+        "Form accepts name and numeric score input",
+        "Submit button calls backend add method",
+        "Leaderboard displays all entries sorted by score",
+        "Multiple users see the same leaderboard data",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LeaderboardTest.tsx",
+          "operation": "create",
+          "description": "Create a component with a form containing name (text) and score (number) inputs. On submit, call addLeaderboardEntry backend method. Display the leaderboard entries fetched from getLeaderboard, sorted by score descending. Use React Query for data fetching and mutations. Display PASS status badge."
+        },
+        {
+          "path": "frontend/src/hooks/useLeaderboard.ts",
+          "operation": "create",
+          "description": "Create custom hooks useGetLeaderboard and useAddLeaderboardEntry using React Query and the backend methods getLeaderboard and addLeaderboardEntry. Handle BigInt conversion for scores and implement proper cache invalidation after mutations."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement External API Fetch Test card that fetches from public REST API with error handling",
+      "acceptanceCriteria": [
+        "Button triggers fetch to a public API endpoint",
+        "Successful response displays formatted JSON",
+        "Network errors display clear error message",
+        "Card shows PASS if successful, NOT SUPPORTED if blocked"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ExternalApiFetchTest.tsx",
+          "operation": "create",
+          "description": "Create a component with a button that fetches data from a public API (e.g., https://jsonplaceholder.typicode.com/posts/1). Display the JSON response in a formatted, readable way. Handle errors gracefully and show NOT SUPPORTED status if requests are blocked, otherwise show PASS status. Use try-catch for error handling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement API Route/Backend Test card that calls Motoko backend test method and displays JSON response",
+      "acceptanceCriteria": [
+        "Button calls backend test method",
+        "Response displays formatted JSON",
+        "Explanation describes Motoko canister method architecture",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ApiRouteTest.tsx",
+          "operation": "create",
+          "description": "Create a component with a button that calls the testJsonResponse backend method. Display the returned JSON in a formatted way. Include an explanation that Motoko canisters provide backend functionality through actor methods rather than traditional REST routes. Display PASS status badge."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Implement Email Capability Test card with form generating mailto link with pre-populated fields",
+      "acceptanceCriteria": [
+        "Form captures name and message input",
+        "Generated mailto link is displayed as text",
+        "Link includes all specified fields with proper encoding",
+        "Button opens default email client with pre-filled content",
+        "Explanation clarifies mailto is a fallback approach",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/EmailCapabilityTest.tsx",
+          "operation": "create",
+          "description": "Create a component with a form containing name and message fields. Generate a mailto link with To: brianvbn@gmail.com, Subject: 'Caffeine Test Submission - [Name]', and Body containing name, message, current timestamp, and a random session ID. Display the generated mailto link as text. Implement a 'Send via Email Client' button that opens the mailto link. Include explanation that direct email sending requires external services and mailto is a fallback. Display PASS status badge."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Integrate Internet Identity authentication with login/logout and protected feature cards",
+      "acceptanceCriteria": [
+        "Login button triggers Internet Identity authentication flow",
+        "After login, user's principal ID is displayed",
+        "Protected cards are only accessible when authenticated",
+        "Logout button clears authentication state",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AuthenticationTest.tsx",
+          "operation": "create",
+          "description": "Create a component that displays the current authentication status. Show the user's principal ID when authenticated. Include login/logout buttons using the useInternetIdentity hook from the authorization component. Display PASS status badge. Use the authorization component as documented in the selected components, verifying the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create a reusable login/logout button component following the authorization component's usage guidelines. Handle login, logout, and loading states. On logout, clear the React Query cache. Use the authorization component as documented in the selected components, verifying the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetup.tsx",
+          "operation": "create",
+          "description": "Create a modal component that prompts authenticated users without a profile to enter their name. Call saveCallerUserProfile after name submission. Use the useGetCallerUserProfile hook following the authorization component's pattern to prevent modal flash on load. Use the authorization component as documented in the selected components, verifying the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create custom hooks useGetCallerUserProfile and useSaveCallerUserProfile using React Query and the backend methods getCallerUserProfile and saveCallerUserProfile. Implement the flash prevention pattern from the authorization component documentation. Use the authorization component as documented in the selected components, verifying the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap protected feature cards (Cross-Device Sync, Leaderboard, File Upload) with authentication checks. Display the LoginButton component prominently. Show the ProfileSetup modal when an authenticated user has no profile. Ensure the app requires login before showing application data, following the authorization component's guidelines. Use the authorization component as documented in the selected components, verifying the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Implement File Upload Test card with image upload, preview, backend persistence, and global gallery",
+      "acceptanceCriteria": [
+        "File input accepts image uploads",
+        "Selected image displays local preview",
+        "Upload button sends image to backend",
+        "Gallery displays all globally uploaded images",
+        "Multiple users see the same uploaded images",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FileUploadTest.tsx",
+          "operation": "create",
+          "description": "Create a component with a file input that accepts images. Display a local preview of the selected image. Implement an upload button that calls uploadImage backend method using ExternalBlob.fromBytes with upload progress tracking. Fetch and display all uploaded images from getAllImages backend method in a gallery grid. Each image should use ExternalBlob.getDirectURL() for display. Require authentication for upload functionality. Display PASS status badge. Use the blob-storage component as documented in the selected components, verifying the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useImageUpload.ts",
+          "operation": "create",
+          "description": "Create custom hooks useUploadImage and useGetAllImages using React Query, the backend methods uploadImage and getAllImages, and the ExternalBlob class. Handle file-to-bytes conversion, upload progress tracking using withUploadProgress, and proper cache invalidation. Use the blob-storage component as documented in the selected components, verifying the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Implement Real-Time Test card explaining WebSocket limitations with NOT SUPPORTED status",
+      "acceptanceCriteria": [
+        "Card displays NOT SUPPORTED status badge",
+        "Explanation clearly states WebSocket limitations",
+        "Alternative polling pattern is mentioned",
+        "No simulated real-time functionality is implemented"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/RealTimeTest.tsx",
+          "operation": "create",
+          "description": "Create a component that displays NOT SUPPORTED status badge. Include a clear explanation that WebSockets and Socket.io are not supported on the Internet Computer platform. Mention that polling or query-based updates are alternative patterns for near-real-time functionality. Do not implement any simulated real-time features."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Implement Version/Deploy Test card with version number, editable changelog, and deployment info",
+      "acceptanceCriteria": [
+        "Version number 'v1.0' is prominently displayed",
+        "Changelog textarea allows editing",
+        "Changelog content persists in localStorage",
+        "Deployment environment info is shown",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/VersionDeployTest.tsx",
+          "operation": "create",
+          "description": "Create a component displaying version number 'v1.0' prominently. Include an editable textarea for changelog that persists to localStorage. Display deployment environment information (e.g., development, production, canister IDs from environment variables). Display PASS status badge."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Implement URL State/Query Parameter Test card that reads query parameters and unlocks hidden section",
+      "acceptanceCriteria": [
+        "Query parameters are parsed from URL on component mount",
+        "All query parameters are displayed in a list",
+        "Hidden section becomes visible when ?code=237 is present",
+        "Explanation confirms URL state works in React Router",
+        "Card displays PASS status badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/UrlStateTest.tsx",
+          "operation": "create",
+          "description": "Create a component that parses query parameters from the URL on mount using URLSearchParams or React Router's useSearchParams. Display all detected query parameters in a list. Show a hidden section when the query parameter 'code' equals '237'. Include an explanation that URL state works reliably in React applications. Display PASS status badge."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Apply creative visual theme with distinct colors (avoiding blue/purple), typography, and cohesive dark UI",
+      "acceptanceCriteria": [
+        "Consistent color palette applied across all cards",
+        "Typography hierarchy is clear and readable",
+        "Card layouts follow a unified design system",
+        "Dark theme is implemented without relying on blue/purple"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Define a custom color palette that avoids blue and purple. Consider colors like emerald green, amber/orange, cyan, and warm grays. Configure typography settings for clear hierarchy. Extend theme with custom spacing and border radius values for consistent card styling."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Apply base dark theme styles using the custom color palette. Define consistent typography scales (headings, body text, labels). Set up spacing utilities and ensure all text remains readable against dark backgrounds."
+        },
+        {
+          "path": "frontend/src/components/FeatureCard.tsx",
+          "operation": "modify",
+          "description": "Apply the unified design system to the FeatureCard component. Use consistent padding, border radius, and shadow styles. Ensure status badges use the custom color palette (e.g., emerald for PASS, amber for LOCAL-ONLY, red-orange for NOT SUPPORTED)."
+        }
+      ]
+    }
+  ]
+}

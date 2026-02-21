@@ -1,0 +1,23 @@
+{
+  "frontend/src/App.tsx": "Main application component with header, footer, and grid layout displaying all 11 feature test cards with authentication and profile setup integration.",
+  "frontend/src/components/FeatureCard.tsx": "Reusable card component that displays feature title, description, status badge (PASS/LOCAL-ONLY/NOT SUPPORTED), optional explanation, and children content.",
+  "frontend/src/components/LoginButton.tsx": "Authentication button component that handles Internet Identity login/logout with loading states and query cache clearing.",
+  "frontend/src/components/ProfileSetup.tsx": "Modal dialog that prompts authenticated users to enter their name for profile creation with form validation.",
+  "frontend/src/components/LocalPersistenceTest.tsx": "Feature card demonstrating localStorage persistence with todo list functionality and clear storage button.",
+  "frontend/src/components/CrossDeviceSyncTest.tsx": "Feature card with global counter that increments via Motoko backend, demonstrating cross-device synchronization.",
+  "frontend/src/components/LeaderboardTest.tsx": "Feature card with form to submit leaderboard entries and display global leaderboard sorted by score from Motoko backend.",
+  "frontend/src/components/ExternalApiFetchTest.tsx": "Feature card that fetches data from JSONPlaceholder API to demonstrate external API access from frontend.",
+  "frontend/src/components/ApiRouteTest.tsx": "Feature card that calls Motoko backend test method to demonstrate canister method endpoints.",
+  "frontend/src/components/EmailCapabilityTest.tsx": "Feature card with form that generates mailto link with pre-populated fields to brianvbn@gmail.com including timestamp and session ID.",
+  "frontend/src/components/AuthenticationTest.tsx": "Feature card displaying current authentication status, user profile name, and principal ID when logged in.",
+  "frontend/src/components/FileUploadTest.tsx": "Feature card with image upload, preview, backend persistence using ExternalBlob, and global gallery display.",
+  "frontend/src/components/RealTimeTest.tsx": "Feature card explaining WebSocket limitations with NOT SUPPORTED status and alternative polling suggestions.",
+  "frontend/src/components/VersionDeployTest.tsx": "Feature card displaying version number v1.0, deployment environment info, and editable changelog persisted to localStorage.",
+  "frontend/src/components/UrlStateTest.tsx": "Feature card that reads URL query parameters and unlocks hidden section when ?code=237 is detected.",
+  "frontend/src/hooks/useUserProfile.ts": "React Query hooks for fetching and saving user profiles with proper actor dependency handling and flash prevention.",
+  "frontend/src/hooks/useCounter.ts": "React Query hooks for fetching and incrementing the global counter with cache invalidation.",
+  "frontend/src/hooks/useLeaderboard.ts": "React Query hooks for fetching leaderboard entries and adding new entries with BigInt score handling.",
+  "frontend/src/hooks/useImageUpload.ts": "React Query hooks for uploading images with ExternalBlob (with proper type casting) and fetching all images with direct URL generation.",
+  "frontend/src/index.css": "Global styles with OKLCH color system defining dark theme with cyan/teal/purple color palette and custom design tokens.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom color palette using chart colors, Inter/JetBrains Mono fonts, and extended design tokens."
+}

@@ -1,2 +1,3 @@
-# caffeine-capability-test
-Exported from Caffeine project: Caffeine Capability Test
+## Caffeine Capability Test
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

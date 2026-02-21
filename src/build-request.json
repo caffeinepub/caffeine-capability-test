@@ -1,0 +1,394 @@
+{
+  "kind": "build_request",
+  "title": "Build Caffeine Capability Test App with Real Motoko Backend Features",
+  "projectName": "Caffeine Capability Test",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a dark-themed single-page app layout with a grid of 11 feature test cards, each displaying a status badge (PASS / LOCAL-ONLY / NOT SUPPORTED) and clear explanations for any limitations",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Clean dark UI",
+          "Each feature in a separate card",
+          "Each card must show a status badge: PASS / LOCAL-ONLY / NOT SUPPORTED"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dark color scheme applied consistently across the app",
+        "All 11 feature cards are visible in a responsive grid layout",
+        "Each card displays a colored status badge",
+        "Limitation explanations are clearly visible where applicable"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement Local Persistence Test card with a todo input field, save to localStorage, persist after browser refresh, and include a clear storage button",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Small todo input",
+          "Save to localStorage",
+          "Persist after refresh",
+          "Clear storage button"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Todo input field accepts and stores text in localStorage",
+        "Stored todos persist after page refresh",
+        "Clear button removes all todos from localStorage",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create Motoko backend method to store and retrieve a global counter value that persists across all users and devices",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "i want to build a potential leader board and cross-device sync",
+          "everything should be real"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores a single global counter in stable memory",
+        "Increment method increases counter and returns new value",
+        "Get method returns current counter value",
+        "Counter persists across canister upgrades"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement Cross-Device Sync Test card with an Increment button that calls the Motoko backend to update a global counter visible to all users across all devices",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-4"
+        ],
+        "quotes": [
+          "Global counter with Increment button",
+          "Attempt to persist globally across devices",
+          "i want to build a potential leader board and cross-device sync"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Button calls backend increment method",
+        "Counter value updates in real-time after increment",
+        "Multiple users see the same counter value",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create Motoko backend methods to add leaderboard entries (name and score) and retrieve all entries sorted by score in descending order, with global persistence across all users",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-4"
+        ],
+        "quotes": [
+          "Attempt global leaderboard shared across users",
+          "i want to build a potential leader board and cross-device sync",
+          "everything should be real"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores leaderboard entries in stable memory",
+        "Add method accepts name and score",
+        "Get method returns entries sorted by score descending",
+        "Leaderboard persists across canister upgrades"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement Leaderboard Test card with a form to submit name and score, display the global leaderboard from the Motoko backend sorted by score, and refresh the list after each submission",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-4"
+        ],
+        "quotes": [
+          "Name + score form",
+          "Attempt global leaderboard shared across users"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form accepts name and numeric score input",
+        "Submit button calls backend add method",
+        "Leaderboard displays all entries sorted by score",
+        "Multiple users see the same leaderboard data",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement External API Fetch Test card that fetches data from a public REST API (e.g., JSONPlaceholder or similar) and displays the JSON result, with error handling for blocked requests",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Fetch data from a public public API",
+          "Display JSON result",
+          "If external requests are blocked, show error and label NOT SUPPORTED"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Button triggers fetch to a public API endpoint",
+        "Successful response displays formatted JSON",
+        "Network errors display clear error message",
+        "Card shows PASS if successful, NOT SUPPORTED if blocked"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create Motoko backend method that returns a test JSON response to demonstrate backend API endpoint functionality",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Attempt to create a simple API endpoint (e.g., /api/test returning JSON {status: \"ok\"})"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend method returns a structured response object",
+        "Response includes status field and timestamp",
+        "Method is callable from frontend"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Implement API Route/Backend Test card that calls the Motoko backend test method and displays the JSON response, with explanation that Motoko canisters provide backend functionality instead of traditional REST routes",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Attempt to create a simple API endpoint",
+          "If backend routes are not supported, clearly explain limitation"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Button calls backend test method",
+        "Response displays formatted JSON",
+        "Explanation describes Motoko canister method architecture",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Implement Email Capability Test card with a form (name and message fields), generate a mailto link pre-populated with To: brianvbn@gmail.com, Subject: 'Caffeine Test Submission - [Name]', and Body including name, message, timestamp, and random session ID, display the generated link, and include a 'Send via Email Client' button with explanation that direct email requires external services",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Form with name + message",
+          "To: brianvbn@gmail.com",
+          "Subject: \"Caffeine Test Submission - [Name]\"",
+          "Body: Include: Name, Message, Timestamp, Random session ID",
+          "Show the generated mailto link before clicking",
+          "Button: \"Send via Email Client\"",
+          "If direct email sending requires paid integrations, explain and implement mailto fallback"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form captures name and message input",
+        "Generated mailto link is displayed as text",
+        "Link includes all specified fields with proper encoding",
+        "Button opens default email client with pre-filled content",
+        "Explanation clarifies mailto is a fallback approach",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Integrate Internet Identity authentication with login/logout functionality, protect specific feature cards requiring authentication, and display the authenticated user's principal ID",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-4"
+        ],
+        "quotes": [
+          "Simple login gate",
+          "Attempt server-side auth",
+          "make real auth as well pls, no simulations anywhere"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Login button triggers Internet Identity authentication flow",
+        "After login, user's principal ID is displayed",
+        "Protected cards are only accessible when authenticated",
+        "Logout button clears authentication state",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Create Motoko backend methods to upload image files as byte arrays with metadata (filename, content type, uploader principal), store them globally, and retrieve all uploaded images with their data",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-4"
+        ],
+        "quotes": [
+          "Upload image and preview",
+          "Attempt to persist so other users can see it",
+          "fil upload, everything should be real"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores uploaded images in stable memory",
+        "Upload method accepts image bytes, filename, and content type",
+        "Method associates uploaded image with authenticated principal",
+        "Get method returns all uploaded images globally",
+        "Images persist across canister upgrades"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Implement File Upload Test card with image upload input, preview uploaded image locally, call Motoko backend to persist the image globally, and display all globally uploaded images from all users in a gallery view",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-4"
+        ],
+        "quotes": [
+          "Upload image and preview",
+          "Attempt to persist so other users can see it",
+          "fil upload, everything should be real"
+        ]
+      },
+      "acceptanceCriteria": [
+        "File input accepts image uploads",
+        "Selected image displays local preview",
+        "Upload button sends image to backend",
+        "Gallery displays all globally uploaded images",
+        "Multiple users see the same uploaded images",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Implement Real-Time Test card that explains WebSockets and Socket.io are not supported on the Internet Computer platform, display NOT SUPPORTED status badge, and clarify that polling or query-based updates are alternative patterns",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Attempt simple two-user live counter or chat",
+          "If real-time is not supported, clearly label NOT SUPPORTED"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Card displays NOT SUPPORTED status badge",
+        "Explanation clearly states WebSocket limitations",
+        "Alternative polling pattern is mentioned",
+        "No simulated real-time functionality is implemented"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Implement Version/Deploy Test card displaying app version number 'v1.0', include an editable changelog textarea that persists locally, and show the current deployment environment information",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Display app version number (v1.0)",
+          "Editable changelog section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Version number 'v1.0' is prominently displayed",
+        "Changelog textarea allows editing",
+        "Changelog content persists in localStorage",
+        "Deployment environment info is shown",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Implement URL State/Query Parameter Test card that reads query parameters from the browser URL (specifically checking for ?code=237), unlocks a hidden section when the correct value is detected, displays all detected query parameters on screen, and explains that URL state works reliably in React",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Read a query parameter from the URL (example: ?code=237)",
+          "If correct value is present, unlock hidden section",
+          "Display detected query parameters on screen",
+          "Explain whether URL-based state works reliably"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Query parameters are parsed from URL on component mount",
+        "All query parameters are displayed in a list",
+        "Hidden section becomes visible when ?code=237 is present",
+        "Explanation confirms URL state works in React Router",
+        "Card displays PASS status badge"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Apply a creative visual theme with distinct colors (avoiding blue and purple), typography, and layout style that creates a cohesive, modern dark UI experience across all feature cards",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Clean dark UI"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Consistent color palette applied across all cards",
+        "Typography hierarchy is clear and readable",
+        "Card layouts follow a unified design system",
+        "Dark theme is implemented without relying on blue/purple"
+      ]
+    }
+  ],
+  "constraints": [
+    "All backend logic must be implemented in a single Motoko actor",
+    "No simulated functionality - all features must be real implementations or clearly labeled as NOT SUPPORTED",
+    "Authentication must use Internet Identity (passkeys, Google, Apple, Microsoft)",
+    "File uploads must persist globally using Motoko backend storage",
+    "Real-time features (WebSockets/Socket.io) are not supported and must be labeled NOT SUPPORTED"
+  ],
+  "nonGoals": [
+    "Implementing simulated or fake global functionality",
+    "Adding REST-style backend routes (use Motoko canister methods instead)",
+    "Supporting WebSocket-based real-time updates",
+    "Direct email sending via SMTP or third-party services",
+    "Using blue and purple color schemes unless explicitly requested"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
